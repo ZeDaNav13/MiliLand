@@ -106,6 +106,13 @@
     .hero {
       display: grid;
       gap: 16px;
+      justify-items: center;
+    }
+
+    .title-wrap {
+      display: grid;
+      gap: 8px;
+      justify-items: center;
     }
 
     .eyebrow {
@@ -130,7 +137,7 @@
       opacity: 0.85;
       display: grid;
       gap: 12px;
-      text-align: left;
+      text-align: center;
     }
 
     .subtext p {
@@ -181,6 +188,50 @@
       color: #00C767;
     }
 
+    body.page-about main {
+      place-items: center;
+      padding: 0;
+    }
+
+    body.page-about .hero {
+      height: calc(100vh - 120px);
+      width: 100vw;
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 100vw;
+      align-items: center;
+      justify-items: center;
+      align-content: center;
+      gap: 0;
+      overflow-x: auto;
+      padding: 0;
+      scroll-snap-type: x mandatory;
+    }
+
+    body.page-about .title-wrap,
+    body.page-about .subtext {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      scroll-snap-align: start;
+      padding: 0 24px;
+    }
+
+    body.page-about .subtext {
+      text-align: right;
+      width: min(640px, 70vw);
+      max-width: 640px;
+      justify-self: center;
+      justify-items: end;
+      align-content: center;
+      padding-right: 0;
+    }
+
+    body.page-about .subtext p {
+      text-align: right;
+    }
+
     /* Contact page palette */
     body.page-contact {
       --bg: #E7FF61;
@@ -224,8 +275,10 @@
 
   <main>
     <div class="hero">
-      <p class="eyebrow" id="eyebrow">Studio</p>
-      <h1 id="title">MiliLand</h1>
+      <div class="title-wrap">
+        <p class="eyebrow" id="eyebrow">Studio</p>
+        <h1 id="title">MiliLand</h1>
+      </div>
       <div class="subtext" id="subtext">
         <p>Your partner for all works, above the fold, under the hood, simple or complex.</p>
       </div>
@@ -261,6 +314,7 @@
     };
 
     const body = document.body;
+    const hero = document.querySelector(".hero");
     const eyebrowEl = document.getElementById("eyebrow");
     const titleEl = document.getElementById("title");
     const subtextEl = document.getElementById("subtext");
@@ -276,6 +330,9 @@
       body.classList.toggle("page-about", key === "about");
       body.classList.toggle("page-works", key === "works");
       body.classList.toggle("page-contact", key === "contact");
+      if (key === "about" && hero) {
+        hero.scrollLeft = 0; // keep title centered with text off-screen to the right on entry
+      }
       navLinks.forEach(link => {
         const target = link.getAttribute("href").replace("#", "");
         link.dataset.active = target === key ? "true" : "false";
