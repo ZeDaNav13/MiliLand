@@ -6,7 +6,7 @@
   <title>MiliLand</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #E9E6E7;
@@ -23,7 +23,7 @@
       min-height: 100vh;
       background: var(--bg);
       color: var(--text);
-      font-family: "Varela Round", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
+      font-family: "Quattrocento Sans", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -128,6 +128,22 @@
       max-width: 620px;
       justify-self: center;
       opacity: 0.85;
+      display: grid;
+      gap: 12px;
+      text-align: left;
+    }
+
+    .subtext p {
+      margin: 0;
+    }
+
+    footer {
+      position: fixed;
+      right: 24px;
+      bottom: 20px;
+      font-size: 0.85rem;
+      letter-spacing: 0.04rem;
+      color: inherit;
     }
 
     nav a[data-active="true"]::after {
@@ -200,7 +216,7 @@
   <header>
     <a class="logo" id="logo" href="#home">MiliLand</a>
     <nav aria-label="Primary">
-      <a href="#about">About</a>
+      <a href="#about">Inside</a>
       <a href="#works">Works</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -208,34 +224,39 @@
 
   <main>
     <div class="hero">
-      <p class="eyebrow" id="eyebrow">New site dropping soon</p>
+      <p class="eyebrow" id="eyebrow">Studio</p>
       <h1 id="title">MiliLand</h1>
-      <p class="subtext" id="subtext">
-        All above the fold. A single-page feel with space to branch out when you choose.
-      </p>
+      <div class="subtext" id="subtext">
+        <p>Your partner for all works, above the fold, under the hood, simple or complex.</p>
+      </div>
     </div>
   </main>
+  <footer>© Studio MiliLand 2026</footer>
   <script>
     const pages = {
       home: {
-        eyebrow: "New site dropping soon",
+        eyebrow: "Studio",
         title: "MiliLand",
-        subtext: "All above the fold. A single-page feel with space to branch out when you choose."
+        subtext: "<p>Your partner for all works, above the fold, under the hood, simple or complex.</p>"
       },
       about: {
-        eyebrow: "About",
-        title: "Inside MiliLand",
-        subtext: "Playful, punchy, and deliberate. This is the world we’re building—tight, pink, and to the point."
+        eyebrow: "Inside",
+        title: "MiliLand",
+        subtext: [
+          "<p>MiliLand Studio builds for the web &mdash; from single pages to large platforms. The aim is clear, durable work.</p>",
+          "<p>With 15 years of experience, the studio creates websites, custom tools, livestream setups with paywalls, and database projects. It also works in graphic design, branding, SEO, and campaigns.</p>",
+          "<p>MiliLand Studio moves fast across time zones and adapts to each project.</p>"
+        ].join("")
       },
       works: {
         eyebrow: "Works",
-        title: "Coming Soon",
-        subtext: "Selected pieces will live here. For now, jump back home."
+        title: "MiliLand",
+        subtext: "<p>Selected works, built for the internet, standing proof of what is done here.</p>"
       },
       contact: {
         eyebrow: "Contact",
-        title: "Reach Out",
-        subtext: "Say hello and we’ll get back fast."
+        title: "mili@mililand.com",
+        subtext: "<p>Say hello and we’ll get back fast.</p>"
       }
     };
 
@@ -251,7 +272,7 @@
       const data = pages[key];
       eyebrowEl.textContent = data.eyebrow;
       titleEl.textContent = data.title;
-      subtextEl.textContent = data.subtext;
+      subtextEl.innerHTML = data.subtext;
       body.classList.toggle("page-about", key === "about");
       body.classList.toggle("page-works", key === "works");
       body.classList.toggle("page-contact", key === "contact");
