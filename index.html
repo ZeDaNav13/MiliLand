@@ -136,6 +136,14 @@
       text-transform: none;
     }
 
+    .strap {
+      margin: 4px 0 0;
+      font-size: 1.05rem;
+      letter-spacing: 0.06rem;
+      text-transform: none;
+      opacity: 0.9;
+    }
+
     .subtext {
       margin: 0;
       font-size: 1.05rem;
@@ -199,6 +207,8 @@
       padding: 0;
       background: none;
       width: 32px;
+      pointer-events: auto;
+      cursor: pointer;
     }
 
     /* About page flip */
@@ -233,7 +243,7 @@
 
     body.page-about .scroll-hints {
       opacity: 1;
-      pointer-events: auto;
+      pointer-events: none;
     }
 
     body.page-about .scroll-hints.show-left .chevron-left {
@@ -341,6 +351,7 @@
       <div class="title-wrap">
         <p class="eyebrow" id="eyebrow">Studio</p>
         <h1 id="title">MiliLand</h1>
+        <p class="strap" id="strap"></p>
       </div>
       <div class="subtext" id="subtext">
         <p>Your partner for all works, above the fold, under the hood, simple or complex.</p>
@@ -357,11 +368,13 @@
       home: {
         eyebrow: "Studio",
         title: "MiliLand",
+        strap: "",
         subtext: "<p>Your partner for all works, above the fold, under the hood, simple or complex.</p>"
       },
       about: {
         eyebrow: "Inside",
         title: "MiliLand",
+        strap: "Lorem ipsum dolor sit amet.",
         subtext: [
           "<p>MiliLand Studio builds for the web &mdash; from single pages to large platforms. The aim is clear, durable work.</p>",
           "<p>With 15 years of experience, the studio creates websites, custom tools, livestream setups with paywalls, and database projects. It also works in graphic design, branding, SEO, and campaigns.</p>",
@@ -371,12 +384,14 @@
       works: {
         eyebrow: "Works",
         title: "MiliLand",
+        strap: "",
         subtext: "<p>Selected works, built for the internet, standing proof of what is done here.</p>"
       },
       contact: {
         eyebrow: "Contact",
-        title: "mili@mililand.com",
-        titleHtml: '<a class="email-link" href="mailto:mili@mililand.com">mili@mililand.com</a>',
+        title: "MiliLand",
+        strap: "",
+        titleHtml: '<a class="email-link" href="mailto:mili@mililand.com">MiliLand</a>',
         subtext: "<p>Say hello and we’ll get back fast.</p>"
       }
     };
@@ -385,6 +400,7 @@
     const hero = document.querySelector(".hero");
     const eyebrowEl = document.getElementById("eyebrow");
     const titleEl = document.getElementById("title");
+    const strapEl = document.getElementById("strap");
     const subtextEl = document.getElementById("subtext");
     const logo = document.getElementById("logo");
     const navLinks = Array.from(document.querySelectorAll("nav a"));
@@ -411,6 +427,8 @@
       const data = pages[key];
       eyebrowEl.textContent = data.eyebrow;
       titleEl.innerHTML = data.titleHtml || data.title;
+      strapEl.textContent = data.strap || "";
+      strapEl.style.display = data.strap ? "block" : "none";
       subtextEl.innerHTML = data.subtext;
       body.classList.toggle("page-about", key === "about");
       body.classList.toggle("page-works", key === "works");
