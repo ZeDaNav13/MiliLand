@@ -158,6 +158,33 @@
       transform-origin: left;
     }
 
+    .scroll-hints {
+      position: fixed;
+      top: 50%;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 18px;
+      color: #ffffff;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-50%);
+      transition: opacity 160ms ease;
+      font-size: 2.4rem;
+      letter-spacing: -0.1rem;
+    }
+
+    .scroll-hints .chevron {
+      display: inline-block;
+      line-height: 1;
+      opacity: 0;
+      transition: opacity 160ms ease;
+      padding: 0;
+      background: none;
+    }
+
     /* About page flip */
     body.page-about {
       --bg: #ff0055;
@@ -188,6 +215,18 @@
       color: #00C767;
     }
 
+    body.page-about .scroll-hints {
+      opacity: 1;
+    }
+
+    body.page-about .scroll-hints.show-left .chevron-left {
+      opacity: 0.32;
+    }
+
+    body.page-about .scroll-hints.show-right .chevron-right {
+      opacity: 0.32;
+    }
+
     body.page-about main {
       place-items: center;
       padding: 0;
@@ -206,6 +245,12 @@
       overflow-x: auto;
       padding: 0;
       scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+
+    body.page-about .hero::-webkit-scrollbar {
+      height: 0;
+      width: 0;
     }
 
     body.page-about .title-wrap,
@@ -283,6 +328,10 @@
         <p>Your partner for all works, above the fold, under the hood, simple or complex.</p>
       </div>
     </div>
+    <div class="scroll-hints" aria-hidden="true">
+      <span class="chevron chevron-left">‹</span>
+      <span class="chevron chevron-right">›</span>
+    </div>
   </main>
   <footer>© Studio MiliLand 2026</footer>
   <script>
@@ -320,6 +369,23 @@
     const subtextEl = document.getElementById("subtext");
     const logo = document.getElementById("logo");
     const navLinks = Array.from(document.querySelectorAll("nav a"));
+    const scrollHints = document.querySelector(".scroll-hints");
+    const chevronLeft = document.querySelector(".chevron-left");
+    const chevronRight = document.querySelector(".chevron-right");
+
+    function updateScrollHints() {
+      if (!hero || !scrollHints || body.classList.contains("page-about") === false) {
+        scrollHints.classList.remove("show-left", "show-right");
+        return;
+      }
+      const maxScroll = hero.scrollWidth - hero.clientWidth;
+      const sc = hero.scrollLeft;
+      const pad = 12;
+      const canScrollLeft = sc > pad;
+      const canScrollRight = sc < maxScroll - pad;
+      scrollHints.classList.toggle("show-left", canScrollLeft);
+      scrollHints.classList.toggle("show-right", canScrollRight);
+    }
 
     function setPage(page) {
       const key = pages[page] ? page : "home";
@@ -332,6 +398,9 @@
       body.classList.toggle("page-contact", key === "contact");
       if (key === "about" && hero) {
         hero.scrollLeft = 0; // keep title centered with text off-screen to the right on entry
+        updateScrollHints();
+      } else {
+        scrollHints?.classList.remove("show-left", "show-right");
       }
       navLinks.forEach(link => {
         const target = link.getAttribute("href").replace("#", "");
@@ -359,8 +428,11 @@
       setPage(hash);
     });
 
+    hero?.addEventListener("scroll", updateScrollHints, { passive: true });
+
     // Initialize from hash or default
     setPage(location.hash.replace("#", "") || "home");
+    updateScrollHints();
   </script>
 </body>
 </html>
