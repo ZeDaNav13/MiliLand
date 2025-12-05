@@ -9,9 +9,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #E9E6E7;
+      --bg: #F0EEE9;
       --accent: #ff0055;
       --text: #ff0055;
+      --green: #00C767;
+      --yellow: #E7FF61;
+      --offwhite: #F0EEE9;
     }
 
     * {
@@ -21,7 +24,7 @@
     body {
       margin: 0;
       min-height: 100vh;
-      background: var(--bg);
+      background-color: var(--bg);
       color: var(--text);
       font-family: "Quattrocento Sans", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
       display: flex;
@@ -39,7 +42,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: var(--bg);
+      background: transparent;
       color: var(--text);
       mix-blend-mode: normal;
       }
@@ -92,14 +95,15 @@
 
     nav a:hover,
     nav a:focus-visible {
-      color: var(--accent);
+      color: var(--green);
     }
 
     main {
       flex: 1;
       display: grid;
       place-items: center;
-      padding: 64px 24px;
+      min-height: 100vh;
+      padding: 16px 16px 64px;
       text-align: center;
     }
 
@@ -107,6 +111,9 @@
       display: grid;
       gap: 16px;
       justify-items: center;
+      width: min(1320px, 100%);
+      min-height: calc(100vh - 120px);
+      align-content: center;
     }
 
     .title-wrap {
@@ -153,6 +160,11 @@
       color: inherit;
     }
 
+    .email-link {
+      color: inherit;
+      text-decoration: none;
+    }
+
     nav a[data-active="true"]::after {
       transform: scaleX(1);
       transform-origin: left;
@@ -160,41 +172,45 @@
 
     .scroll-hints {
       position: fixed;
-      top: 50%;
+      top: 0;
+      bottom: 0;
       left: 0;
       right: 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 18px;
-      color: #ffffff;
+      padding: 0 12px;
+      color: var(--offwhite);
       opacity: 0;
       pointer-events: none;
-      transform: translateY(-50%);
+      transform: none;
       transition: opacity 160ms ease;
-      font-size: 2.4rem;
+      font-size: clamp(3.5rem, 11vw, 8rem);
       letter-spacing: -0.1rem;
     }
 
     .scroll-hints .chevron {
-      display: inline-block;
+      display: flex;
+      align-items: center;
+      height: 100%;
       line-height: 1;
       opacity: 0;
       transition: opacity 160ms ease;
       padding: 0;
       background: none;
+      width: 32px;
     }
 
     /* About page flip */
     body.page-about {
       --bg: #ff0055;
-      --text: #ffffff;
+      --text: var(--offwhite);
     }
 
     /* Works page palette */
     body.page-works {
       --bg: #00C767;
-      --text: #ffffff;
+      --text: var(--offwhite);
     }
 
     body.page-works header {
@@ -203,11 +219,11 @@
 
     body.page-works nav a:hover,
     body.page-works nav a:focus-visible {
-      color: #E9E6E7;
+      color: var(--yellow);
     }
 
     body.page-about header {
-      color: #E9E6E7;
+      color: var(--offwhite);
     }
 
     body.page-about nav a:hover,
@@ -217,6 +233,7 @@
 
     body.page-about .scroll-hints {
       opacity: 1;
+      pointer-events: auto;
     }
 
     body.page-about .scroll-hints.show-left .chevron-left {
@@ -246,6 +263,7 @@
       padding: 0;
       scroll-snap-type: x mandatory;
       scrollbar-width: none;
+      min-height: unset;
     }
 
     body.page-about .hero::-webkit-scrollbar {
@@ -289,7 +307,7 @@
 
     body.page-contact nav a:hover,
     body.page-contact nav a:focus-visible {
-      color: #ffffff;
+      color: var(--green);
     }
 
     @media (max-width: 640px) {
@@ -347,7 +365,7 @@
         subtext: [
           "<p>MiliLand Studio builds for the web &mdash; from single pages to large platforms. The aim is clear, durable work.</p>",
           "<p>With 15 years of experience, the studio creates websites, custom tools, livestream setups with paywalls, and database projects. It also works in graphic design, branding, SEO, and campaigns.</p>",
-          "<p>MiliLand Studio moves fast across time zones and adapts to each project.</p>"
+          "<p>MiliLand Studio moves fast across time zones and galaxies and adapts to each project.</p>"
         ].join("")
       },
       works: {
@@ -358,6 +376,7 @@
       contact: {
         eyebrow: "Contact",
         title: "mili@mililand.com",
+        titleHtml: '<a class="email-link" href="mailto:mili@mililand.com">mili@mililand.com</a>',
         subtext: "<p>Say hello and we’ll get back fast.</p>"
       }
     };
@@ -391,7 +410,7 @@
       const key = pages[page] ? page : "home";
       const data = pages[key];
       eyebrowEl.textContent = data.eyebrow;
-      titleEl.textContent = data.title;
+      titleEl.innerHTML = data.titleHtml || data.title;
       subtextEl.innerHTML = data.subtext;
       body.classList.toggle("page-about", key === "about");
       body.classList.toggle("page-works", key === "works");
@@ -429,6 +448,16 @@
     });
 
     hero?.addEventListener("scroll", updateScrollHints, { passive: true });
+
+    function scrollHero(direction) {
+      if (!hero || body.classList.contains("page-about") === false) return;
+      const delta = hero.clientWidth * 0.85;
+      const next = direction === "left" ? hero.scrollLeft - delta : hero.scrollLeft + delta;
+      hero.scrollTo({ left: next, behavior: "smooth" });
+    }
+
+    chevronLeft?.addEventListener("click", () => scrollHero("left"));
+    chevronRight?.addEventListener("click", () => scrollHero("right"));
 
     // Initialize from hash or default
     setPage(location.hash.replace("#", "") || "home");
