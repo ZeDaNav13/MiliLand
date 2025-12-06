@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MiliLand</title>
+  <title>Studio MiliLand</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23F0EEE9'/%3E%3Cpath d='M10 50V14h8l14 22 14-22h8v36h-8V30l-12 18h-4L18 30v20z' fill='%23ff0055'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans:wght@400;700&family=Mulish:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@300;400;600&family=Krub:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #F0EEE9;
@@ -27,7 +28,7 @@
       min-height: 100vh;
       background-color: var(--bg);
       color: var(--text);
-      font-family: "Mulish", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
+      font-family: "Krub", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -56,7 +57,7 @@
       cursor: pointer;
       text-decoration: none;
       color: inherit;
-      font-family: "Quattrocento Sans", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
+      font-family: "Chivo", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
     }
 
     nav {
@@ -66,7 +67,7 @@
       font-size: 0.95rem;
       text-transform: uppercase;
       letter-spacing: 0.08rem;
-      font-family: "Quattrocento Sans", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
+      font-family: "Chivo", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
     }
 
     nav a {
@@ -132,7 +133,7 @@
       font-size: 0.9rem;
       letter-spacing: 0.18rem;
       text-transform: uppercase;
-      font-family: "Quattrocento Sans", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
+      font-family: "Chivo", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
     }
 
     h1 {
@@ -140,33 +141,71 @@
       font-size: clamp(3.5rem, 11vw, 8rem);
       letter-spacing: 0.18rem;
       text-transform: none;
-      font-family: "Quattrocento Sans", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
+      font-family: "Chivo", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
+    }
+
+    .title-mili,
+    .title-land {
+      display: inline-block;
+      cursor: pointer;
+      padding: 0 4px;
+      color: inherit;
+      transition: color 160ms ease;
+    }
+
+    .title-mili.disabled {
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .title-mili:hover,
+    .title-mili:focus-visible,
+    .title-land:hover,
+    .title-land:focus-visible {
+      color: var(--green);
     }
 
     .strap {
       margin: 2px 0 0;
       font-size: 1.05rem;
+      line-height: 1.4;
+      font-weight: 400;
       letter-spacing: 0.06rem;
       opacity: 0.9;
       font-family: "Chivo", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
+      display: block;
+      max-width: 35ch;
+      width: 100%;
+      text-align: center;
+    }
+
+    body.page-about .strap {
+      max-width: 28ch;
+      width: min(28ch, 90vw);
+      text-align: center;
     }
 
     .subtext {
       margin: 0;
       font-size: 1.05rem;
-      max-width: 620px;
+      max-width: 35ch;
+      width: 100%;
       justify-self: center;
       opacity: 0.85;
       display: grid;
       gap: 12px;
       text-align: center;
-      width: min(760px, 90vw);
+      width: min(35ch, 90vw);
       line-height: 1.4;
-      font-family: "Mulish", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
+      font-family: "Krub", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
     }
 
     .subtext p {
       margin: 0;
+      max-width: 35ch;
+      width: 100%;
+      justify-self: center;
+      text-align: inherit;
     }
 
     .works-slides {
@@ -197,8 +236,9 @@
       font-size: 1.05rem;
       line-height: 1.4;
       text-align: center;
-      font-family: "Mulish", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
-      max-width: min(720px, 80vw);
+      font-family: "Krub", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
+      max-width: 35ch;
+      width: 100%;
     }
 
     .work-slide.slide-right {
@@ -212,13 +252,11 @@
 
     body.page-works h1,
     body.page-works .eyebrow,
-    body.page-works .strap {
-      color: #E7FF61;
-    }
-
+    body.page-works .strap,
     body.page-works .subtext,
-    body.page-works .subtext p {
-      color: #E7FF61;
+    body.page-works .subtext p,
+    body.page-works .work-copy {
+      color: #ff0055;
     }
 
     body.page-works footer {
@@ -229,12 +267,13 @@
     body.page-contact .eyebrow,
     body.page-contact .strap,
     body.page-contact .subtext,
-    body.page-contact .subtext p {
-      color: #00C767;
+    body.page-contact .subtext p,
+    body.page-contact .work-copy {
+      color: #E7FF61;
     }
 
     body.page-contact footer {
-      color: #ff0055;
+      color: #E7FF61;
     }
 
     footer {
@@ -244,7 +283,7 @@
       font-size: 0.85rem;
       letter-spacing: 0.04rem;
       color: inherit;
-      font-family: "Mulish", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
+      font-family: "Krub", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
     }
 
     .email-link {
@@ -257,10 +296,49 @@
       transform-origin: left;
     }
 
+    .mobile-bar {
+      display: none;
+    }
+
+    .menu-toggle {
+      background: none;
+      border: none;
+      color: inherit;
+      font-size: 1.8rem;
+      letter-spacing: 0.3rem;
+      cursor: pointer;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      position: fixed;
+      top: 56px;
+      left: 0;
+      right: 0;
+      padding: 16px 24px 24px;
+      gap: 12px;
+      background: var(--bg);
+      color: var(--text);
+      z-index: 20;
+    }
+
+    .menu-spacer {
+      height: 12px;
+    }
+
+    .mobile-menu a {
+      color: inherit;
+      text-decoration: none;
+      font-size: 1.05rem;
+      letter-spacing: 0.12rem;
+      text-transform: uppercase;
+    }
+
     .scroll-hints {
       position: fixed;
-      top: 0;
-      bottom: 0;
+      top: 28vh;
+      bottom: auto;
       left: 0;
       right: 0;
       display: flex;
@@ -290,6 +368,14 @@
       cursor: pointer;
     }
 
+    .scroll-hints.show-left .chevron-left {
+      opacity: 0.32;
+    }
+
+    .scroll-hints.show-right .chevron-right {
+      opacity: 0.32;
+    }
+
     /* About page flip */
     body.page-about {
       --bg: #ff0055;
@@ -298,17 +384,18 @@
 
     /* Works page palette */
     body.page-works {
-      --bg: #00C767;
-      --text: #E7FF61;
+      --bg: #E7FF61;
+      --text: #ff0055;
     }
 
-    body.page-works header {
+    body.page-works header,
+    body.page-works footer {
       color: #ff0055;
     }
 
     body.page-works nav a:hover,
     body.page-works nav a:focus-visible {
-      color: #E7FF61;
+      color: var(--green);
     }
 
     body.page-about header {
@@ -323,6 +410,13 @@
     body.page-about .scroll-hints {
       opacity: 1;
       pointer-events: none;
+      color: var(--offwhite);
+    }
+
+    body.page-works .scroll-hints {
+      opacity: 1;
+      pointer-events: none;
+      color: var(--yellow);
     }
 
     body.page-about main {
@@ -356,14 +450,16 @@
     }
 
     body.page-about .subtext {
-      text-align: right;
-      width: min(700px, 40vw);
-      justify-items: end;
-      padding: 0 256px;
+      text-align: center;
+      width: min(35ch, 90vw);
+      max-width: 35ch;
+      justify-items: center;
+      padding: 0 48px;
     }
 
     body.page-about .subtext p {
-      text-align: right;
+      text-align: center;
+      max-width: 35ch;
     }
 
     body.page-works main {
@@ -397,19 +493,60 @@
       justify-items: end;
     }
 
-    /* Contact page palette */
-    body.page-contact {
-      --bg: #E7FF61;
-      --text: #00C767;
+    body.page-works .hero,
+    body.page-works .subtext {
+      min-width: 100vw;
+      min-height: calc(100vh - 120px);
+      scroll-snap-align: start;
     }
 
-    body.page-contact header {
-      color: #ff0055;
+    /* Contact page palette */
+    body.page-contact {
+      --bg: #00C767;
+      --text: #E7FF61;
+    }
+
+    body.page-contact header,
+    body.page-contact footer {
+      color: #E7FF61;
     }
 
     body.page-contact nav a:hover,
     body.page-contact nav a:focus-visible {
-      color: #00C767;
+      color: #ff0055;
+    }
+
+    @media (max-width: 768px) {
+      :root {
+        --stack-top: 14vh;
+      }
+
+      header {
+        display: none;
+      }
+
+      .mobile-bar {
+        position: fixed;
+        top: 12px;
+        left: 12px;
+        right: 12px;
+        display: flex;
+        justify-content: flex-end;
+        z-index: 30;
+      }
+
+      body.menu-open .mobile-menu {
+        display: flex;
+      }
+
+      body.menu-open {
+        overflow: hidden;
+      }
+
+      .work-slide .logo-box {
+        width: 120px;
+        height: 120px;
+      }
     }
 
     @media (max-width: 640px) {
@@ -437,8 +574,19 @@
       <a href="#contact">Contact</a>
     </nav>
   </header>
+  <div class="mobile-bar">
+    <button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu">/ / /</button>
+    <nav id="mobile-menu" class="mobile-menu" aria-label="Mobile">
+      <div class="menu-spacer"></div>
+      <a href="#home">Home</a>
+      <a href="#about">Inside</a>
+      <a href="#works">Works</a>
+      <a href="#contact">Contact</a>
+      <div class="menu-spacer"></div>
+    </nav>
+  </div>
 
-    <main>
+  <main>
     <div class="hero">
       <div class="title-wrap">
         <p class="eyebrow" id="eyebrow">Studio</p>
@@ -523,9 +671,13 @@
     const scrollHints = document.querySelector(".scroll-hints");
     const chevronLeft = document.querySelector(".chevron-left");
     const chevronRight = document.querySelector(".chevron-right");
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const pageOrder = ["home", "about", "works", "contact"];
 
     function updateScrollHints() {
-      if (!mainEl || !scrollHints || body.classList.contains("page-about") === false) {
+      const inSlides = body.classList.contains("page-about") || body.classList.contains("page-works");
+      if (!mainEl || !scrollHints || !inSlides) {
         scrollHints.classList.remove("show-left", "show-right");
         return;
       }
@@ -542,7 +694,12 @@
       const key = pages[page] ? page : "home";
       const data = pages[key];
       eyebrowEl.textContent = data.eyebrow;
-      titleEl.innerHTML = data.titleHtml || data.title;
+      const showSplitTitle = (data.title || "").toLowerCase() === "mililand";
+      if (showSplitTitle) {
+        titleEl.innerHTML = "<span class=\"title-mili\">Mili</span><span class=\"title-land\">Land</span>";
+      } else {
+        titleEl.innerHTML = data.titleHtml || data.title;
+      }
       const strapText = data.strap || "";
       strapEl.textContent = strapText;
       strapEl.hidden = !strapText;
@@ -561,6 +718,14 @@
         const target = link.getAttribute("href").replace("#", "");
         link.dataset.active = target === key ? "true" : "false";
       });
+      if (body.classList.contains("menu-open")) {
+        body.classList.remove("menu-open");
+        menuToggle?.setAttribute("aria-expanded", "false");
+      }
+
+      if (showSplitTitle) {
+        attachTitleNav(key);
+      }
     }
 
     navLinks.forEach(link => {
@@ -578,6 +743,20 @@
       history.pushState({ page: "home" }, "", "#home");
     });
 
+    menuToggle?.addEventListener("click", () => {
+      const isOpen = body.classList.toggle("menu-open");
+      menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+
+    mobileMenu?.addEventListener("click", (event) => {
+      const link = event.target.closest("a");
+      if (!link) return;
+      event.preventDefault();
+      const target = link.getAttribute("href").replace("#", "");
+      setPage(target);
+      history.pushState({ page: target }, "", "#" + target);
+    });
+
     window.addEventListener("popstate", () => {
       const hash = location.hash.replace("#", "") || "home";
       setPage(hash);
@@ -586,7 +765,7 @@
     mainEl?.addEventListener("scroll", updateScrollHints, { passive: true });
 
     function scrollHero(direction) {
-      if (!mainEl || body.classList.contains("page-about") === false) return;
+      if (!mainEl || (!body.classList.contains("page-about") && !body.classList.contains("page-works"))) return;
       const delta = mainEl.clientWidth * 0.85;
       const next = direction === "left" ? mainEl.scrollLeft - delta : mainEl.scrollLeft + delta;
       mainEl.scrollTo({ left: next, behavior: "smooth" });
@@ -594,6 +773,46 @@
 
     chevronLeft?.addEventListener("click", () => scrollHero("left"));
     chevronRight?.addEventListener("click", () => scrollHero("right"));
+
+    function attachTitleNav(currentPage) {
+      const miliEl = titleEl.querySelector(".title-mili");
+      const landEl = titleEl.querySelector(".title-land");
+      if (!miliEl || !landEl) return;
+      const idx = pageOrder.indexOf(currentPage);
+      const prevKey = idx > 0 ? pageOrder[idx - 1] : null;
+      const nextKey = idx >= 0 && idx < pageOrder.length - 1 ? pageOrder[idx + 1] : null;
+
+      // Mili: go back (disabled on first page; on last goes to works)
+      miliEl.classList.remove("disabled");
+      miliEl.onclick = null;
+      landEl.onclick = null;
+
+      if (currentPage === "home") {
+        miliEl.classList.add("disabled");
+      } else if (currentPage === "contact") {
+        miliEl.onclick = () => {
+          setPage("works");
+          history.pushState({ page: "works" }, "", "#works");
+        };
+      } else if (prevKey) {
+        miliEl.onclick = () => {
+          setPage(prevKey);
+          history.pushState({ page: prevKey }, "", "#" + prevKey);
+        };
+      }
+
+      // Land: go forward (mailto on last page)
+      if (currentPage === "contact") {
+        landEl.onclick = () => {
+          window.location.href = "mailto:mili@mililand.com";
+        };
+      } else if (nextKey) {
+        landEl.onclick = () => {
+          setPage(nextKey);
+          history.pushState({ page: nextKey }, "", "#" + nextKey);
+        };
+      }
+    }
 
     // Initialize from hash or default
     setPage(location.hash.replace("#", "") || "home");
