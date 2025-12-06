@@ -6,7 +6,7 @@
   <title>MiliLand</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans:wght@400;700&family=Mulish:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #F0EEE9;
@@ -15,6 +15,7 @@
       --green: #00C767;
       --yellow: #E7FF61;
       --offwhite: #F0EEE9;
+      --stack-top: 22vh;
     }
 
     * {
@@ -26,7 +27,7 @@
       min-height: 100vh;
       background-color: var(--bg);
       color: var(--text);
-      font-family: "Quattrocento Sans", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
+      font-family: "Mulish", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -55,6 +56,7 @@
       cursor: pointer;
       text-decoration: none;
       color: inherit;
+      font-family: "Quattrocento Sans", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
     }
 
     nav {
@@ -64,6 +66,7 @@
       font-size: 0.95rem;
       text-transform: uppercase;
       letter-spacing: 0.08rem;
+      font-family: "Quattrocento Sans", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
     }
 
     nav a {
@@ -101,10 +104,13 @@
     main {
       flex: 1;
       display: grid;
-      place-items: center;
+      gap: 16px;
+      place-items: start center;
+      align-content: start;
       min-height: 100vh;
-      padding: 16px 16px 64px;
+      padding: var(--stack-top) 16px 64px;
       text-align: center;
+      overflow: hidden;
     }
 
     .hero {
@@ -112,13 +118,12 @@
       gap: 16px;
       justify-items: center;
       width: min(1320px, 100%);
-      min-height: calc(100vh - 120px);
-      align-content: center;
+      align-content: start;
     }
 
     .title-wrap {
       display: grid;
-      gap: 8px;
+      gap: 4px;
       justify-items: center;
     }
 
@@ -127,6 +132,7 @@
       font-size: 0.9rem;
       letter-spacing: 0.18rem;
       text-transform: uppercase;
+      font-family: "Quattrocento Sans", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
     }
 
     h1 {
@@ -134,14 +140,15 @@
       font-size: clamp(3.5rem, 11vw, 8rem);
       letter-spacing: 0.18rem;
       text-transform: none;
+      font-family: "Quattrocento Sans", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
     }
 
     .strap {
-      margin: 4px 0 0;
+      margin: 2px 0 0;
       font-size: 1.05rem;
       letter-spacing: 0.06rem;
-      text-transform: none;
       opacity: 0.9;
+      font-family: "Chivo", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
     }
 
     .subtext {
@@ -153,10 +160,81 @@
       display: grid;
       gap: 12px;
       text-align: center;
+      width: min(760px, 90vw);
+      line-height: 1.4;
+      font-family: "Mulish", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
     }
 
     .subtext p {
       margin: 0;
+    }
+
+    .works-slides {
+      display: none;
+      gap: 0;
+    }
+
+    .work-slide {
+      min-width: 100vw;
+      min-height: calc(100vh - 120px);
+      padding: 0 24px;
+      display: grid;
+      gap: 18px;
+      align-content: start;
+      justify-items: center;
+      scroll-snap-align: start;
+    }
+
+    .work-slide .logo-box {
+      width: 160px;
+      height: 160px;
+      border: 4px solid currentColor;
+      border-radius: 8px;
+    }
+
+    .work-slide .work-copy {
+      margin: 0;
+      font-size: 1.05rem;
+      line-height: 1.4;
+      text-align: center;
+      font-family: "Mulish", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
+      max-width: min(720px, 80vw);
+    }
+
+    .work-slide.slide-right {
+      justify-items: end;
+      text-align: right;
+    }
+
+    .work-slide.slide-right .work-copy {
+      text-align: right;
+    }
+
+    body.page-works h1,
+    body.page-works .eyebrow,
+    body.page-works .strap {
+      color: #E7FF61;
+    }
+
+    body.page-works .subtext,
+    body.page-works .subtext p {
+      color: #E7FF61;
+    }
+
+    body.page-works footer {
+      color: #ff0055;
+    }
+
+    body.page-contact h1,
+    body.page-contact .eyebrow,
+    body.page-contact .strap,
+    body.page-contact .subtext,
+    body.page-contact .subtext p {
+      color: #00C767;
+    }
+
+    body.page-contact footer {
+      color: #ff0055;
     }
 
     footer {
@@ -166,6 +244,7 @@
       font-size: 0.85rem;
       letter-spacing: 0.04rem;
       color: inherit;
+      font-family: "Mulish", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
     }
 
     .email-link {
@@ -220,7 +299,7 @@
     /* Works page palette */
     body.page-works {
       --bg: #00C767;
-      --text: var(--offwhite);
+      --text: #E7FF61;
     }
 
     body.page-works header {
@@ -229,7 +308,7 @@
 
     body.page-works nav a:hover,
     body.page-works nav a:focus-visible {
-      color: var(--yellow);
+      color: #E7FF61;
     }
 
     body.page-about header {
@@ -246,63 +325,76 @@
       pointer-events: none;
     }
 
-    body.page-about .scroll-hints.show-left .chevron-left {
-      opacity: 0.32;
-    }
-
-    body.page-about .scroll-hints.show-right .chevron-right {
-      opacity: 0.32;
-    }
-
     body.page-about main {
-      place-items: center;
-      padding: 0;
-    }
-
-    body.page-about .hero {
-      height: calc(100vh - 120px);
-      width: 100vw;
-      display: grid;
-      grid-auto-flow: column;
-      grid-auto-columns: 100vw;
-      align-items: center;
-      justify-items: center;
-      align-content: center;
-      gap: 0;
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: flex-start;
       overflow-x: auto;
-      padding: 0;
+      gap: 0;
+      padding: var(--stack-top) 0 64px;
       scroll-snap-type: x mandatory;
-      scrollbar-width: none;
-      min-height: unset;
+      scroll-behavior: smooth;
     }
 
-    body.page-about .hero::-webkit-scrollbar {
-      height: 0;
-      width: 0;
+    body:not(.page-about) .hero {
+      min-height: auto;
     }
 
-    body.page-about .title-wrap,
+    body:not(.page-about) main {
+      scroll-snap-type: none;
+    }
+
+    body.page-about .hero,
     body.page-about .subtext {
-      width: 100%;
-      height: 100%;
+      min-height: calc(100vh - 120px);
+      min-width: 100vw;
       display: grid;
-      place-items: center;
-      scroll-snap-align: start;
+      place-items: start center;
+      align-content: start;
       padding: 0 24px;
+      scroll-snap-align: start;
     }
 
     body.page-about .subtext {
       text-align: right;
-      width: min(640px, 70vw);
-      max-width: 640px;
-      justify-self: center;
+      width: min(700px, 40vw);
       justify-items: end;
-      align-content: center;
-      padding-right: 0;
+      padding: 0 256px;
     }
 
     body.page-about .subtext p {
       text-align: right;
+    }
+
+    body.page-works main {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: flex-start;
+      overflow-x: auto;
+      gap: 0;
+      padding: var(--stack-top) 0 64px;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+    }
+
+    body.page-works .hero,
+    body.page-works .subtext {
+      display: none;
+    }
+
+    body.page-works .works-slides {
+      display: flex;
+      width: 100%;
+    }
+
+    body.page-works .work-slide {
+      align-content: start;
+      justify-items: center;
+      padding: 0 32px;
+    }
+
+    body.page-works .work-slide.slide-right {
+      justify-items: end;
     }
 
     /* Contact page palette */
@@ -317,7 +409,7 @@
 
     body.page-contact nav a:hover,
     body.page-contact nav a:focus-visible {
-      color: var(--green);
+      color: #00C767;
     }
 
     @media (max-width: 640px) {
@@ -346,15 +438,37 @@
     </nav>
   </header>
 
-  <main>
+    <main>
     <div class="hero">
       <div class="title-wrap">
         <p class="eyebrow" id="eyebrow">Studio</p>
         <h1 id="title">MiliLand</h1>
-        <p class="strap" id="strap"></p>
+        <p class="strap" id="strap" hidden></p>
       </div>
-      <div class="subtext" id="subtext">
-        <p>Your partner for all works, above the fold, under the hood, simple or complex.</p>
+    </div>
+    <div class="subtext" id="subtext">
+      <p>Your partner for all works, above the fold, under the hood, simple or complex.</p>
+    </div>
+    <div class="works-slides" id="works-slides">
+      <div class="work-slide">
+        <div class="title-wrap">
+          <p class="eyebrow">Works</p>
+          <h1>MiliLand</h1>
+          <p class="strap" aria-hidden="true"></p>
+        </div>
+        <p class="work-copy">Selected works, built for the internet, standing proof of what is done here.</p>
+      </div>
+      <div class="work-slide">
+        <div class="logo-box" aria-hidden="true"></div>
+        <p class="work-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a varius urna.</p>
+      </div>
+      <div class="work-slide">
+        <div class="logo-box" aria-hidden="true"></div>
+        <p class="work-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a varius urna.</p>
+      </div>
+      <div class="work-slide slide-right">
+        <div class="logo-box" aria-hidden="true"></div>
+        <p class="work-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a varius urna.</p>
       </div>
     </div>
     <div class="scroll-hints" aria-hidden="true">
@@ -374,7 +488,7 @@
       about: {
         eyebrow: "Inside",
         title: "MiliLand",
-        strap: "Lorem ipsum dolor sit amet.",
+        strap: "Fast, straight up, no nonsense — slide to the right.",
         subtext: [
           "<p>MiliLand Studio builds for the web &mdash; from single pages to large platforms. The aim is clear, durable work.</p>",
           "<p>With 15 years of experience, the studio creates websites, custom tools, livestream setups with paywalls, and database projects. It also works in graphic design, branding, SEO, and campaigns.</p>",
@@ -398,10 +512,12 @@
 
     const body = document.body;
     const hero = document.querySelector(".hero");
+    const mainEl = document.querySelector("main");
     const eyebrowEl = document.getElementById("eyebrow");
     const titleEl = document.getElementById("title");
     const strapEl = document.getElementById("strap");
     const subtextEl = document.getElementById("subtext");
+    const worksSlides = document.getElementById("works-slides");
     const logo = document.getElementById("logo");
     const navLinks = Array.from(document.querySelectorAll("nav a"));
     const scrollHints = document.querySelector(".scroll-hints");
@@ -409,12 +525,12 @@
     const chevronRight = document.querySelector(".chevron-right");
 
     function updateScrollHints() {
-      if (!hero || !scrollHints || body.classList.contains("page-about") === false) {
+      if (!mainEl || !scrollHints || body.classList.contains("page-about") === false) {
         scrollHints.classList.remove("show-left", "show-right");
         return;
       }
-      const maxScroll = hero.scrollWidth - hero.clientWidth;
-      const sc = hero.scrollLeft;
+      const maxScroll = mainEl.scrollWidth - mainEl.clientWidth;
+      const sc = mainEl.scrollLeft;
       const pad = 12;
       const canScrollLeft = sc > pad;
       const canScrollRight = sc < maxScroll - pad;
@@ -427,17 +543,19 @@
       const data = pages[key];
       eyebrowEl.textContent = data.eyebrow;
       titleEl.innerHTML = data.titleHtml || data.title;
-      strapEl.textContent = data.strap || "";
-      strapEl.style.display = data.strap ? "block" : "none";
+      const strapText = data.strap || "";
+      strapEl.textContent = strapText;
+      strapEl.hidden = !strapText;
       subtextEl.innerHTML = data.subtext;
       body.classList.toggle("page-about", key === "about");
       body.classList.toggle("page-works", key === "works");
       body.classList.toggle("page-contact", key === "contact");
-      if (key === "about" && hero) {
-        hero.scrollLeft = 0; // keep title centered with text off-screen to the right on entry
+      if (key === "about" || key === "works") {
+        mainEl?.scrollTo({ left: 0, behavior: "auto" });
         updateScrollHints();
       } else {
         scrollHints?.classList.remove("show-left", "show-right");
+        if (worksSlides) worksSlides.scrollLeft = 0;
       }
       navLinks.forEach(link => {
         const target = link.getAttribute("href").replace("#", "");
@@ -465,13 +583,13 @@
       setPage(hash);
     });
 
-    hero?.addEventListener("scroll", updateScrollHints, { passive: true });
+    mainEl?.addEventListener("scroll", updateScrollHints, { passive: true });
 
     function scrollHero(direction) {
-      if (!hero || body.classList.contains("page-about") === false) return;
-      const delta = hero.clientWidth * 0.85;
-      const next = direction === "left" ? hero.scrollLeft - delta : hero.scrollLeft + delta;
-      hero.scrollTo({ left: next, behavior: "smooth" });
+      if (!mainEl || body.classList.contains("page-about") === false) return;
+      const delta = mainEl.clientWidth * 0.85;
+      const next = direction === "left" ? mainEl.scrollLeft - delta : mainEl.scrollLeft + delta;
+      mainEl.scrollTo({ left: next, behavior: "smooth" });
     }
 
     chevronLeft?.addEventListener("click", () => scrollHero("left"));
