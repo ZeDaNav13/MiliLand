@@ -122,6 +122,14 @@
       align-content: start;
     }
 
+    .intro-slide {
+      display: grid;
+      gap: 14px;
+      justify-items: center;
+      align-content: start;
+      width: 100%;
+    }
+
     .title-wrap {
       display: grid;
       gap: 4px;
@@ -238,6 +246,69 @@
       text-align: center;
       font-family: "Krub", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
       max-width: 35ch;
+      width: 100%;
+    }
+
+    .brand-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(80px, 1fr));
+      gap: 16px;
+      width: min(420px, 80vw);
+      justify-items: center;
+    }
+
+    .about-slides {
+      display: none;
+      gap: 0;
+    }
+
+    .about-slide {
+      min-width: 100vw;
+      min-height: calc(100vh - 120px);
+      padding: 0 32px;
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      scroll-snap-align: start;
+    }
+
+    .text-block {
+      max-width: 60ch;
+      width: min(90vw, 60ch);
+      display: grid;
+      gap: 16px;
+      text-align: center;
+      font-family: "Krub", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
+      font-size: 1.05rem;
+      line-height: 1.5;
+    }
+
+    @media (max-height: 720px) {
+      .brand-grid {
+        grid-template-columns: repeat(4, minmax(70px, 1fr));
+        width: min(520px, 90vw);
+      }
+
+      .brand-grid .brand-circle:nth-of-type(9) {
+        display: none;
+      }
+    }
+
+    .brand-circle {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      border: 4px solid currentColor;
+      display: grid;
+      place-items: center;
+      font-family: "Krub", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08rem;
+    }
+
+    body.page-about .about-slides {
+      display: flex;
       width: 100%;
     }
 
@@ -377,11 +448,6 @@
     }
 
     /* About page flip */
-    body.page-about {
-      --bg: #ff0055;
-      --text: var(--offwhite);
-    }
-
     /* Works page palette */
     body.page-works {
       --bg: #E7FF61;
@@ -398,13 +464,35 @@
       color: var(--green);
     }
 
-    body.page-about header {
+    body.page-works .logo:hover,
+    body.page-works .logo:focus-visible {
+      color: var(--green);
+    }
+
+    body.page-about {
+      --bg: #ff0055;
+      --text: #F0EEE9;
+    }
+
+    body.page-about header,
+    body.page-about footer {
       color: var(--offwhite);
     }
 
     body.page-about nav a:hover,
-    body.page-about nav a:focus-visible {
+    body.page-about nav a:focus-visible,
+    body.page-about .logo:hover,
+    body.page-about .logo:focus-visible {
       color: #00C767;
+    }
+
+    body.page-about h1,
+    body.page-about .eyebrow,
+    body.page-about .strap,
+    body.page-about .subtext,
+    body.page-about .subtext p,
+    body.page-about .text-block {
+      color: var(--offwhite);
     }
 
     body.page-about .scroll-hints {
@@ -419,7 +507,8 @@
       color: var(--yellow);
     }
 
-    body.page-about main {
+    body.page-about main,
+    body.page-works main {
       display: flex;
       flex-wrap: nowrap;
       align-items: flex-start;
@@ -430,14 +519,15 @@
       scroll-behavior: smooth;
     }
 
-    body:not(.page-about) .hero {
+    body:not(.page-about):not(.page-works) .hero {
       min-height: auto;
     }
 
-    body:not(.page-about) main {
+    body:not(.page-about):not(.page-works) main {
       scroll-snap-type: none;
     }
 
+    body.page-about .intro-slide,
     body.page-about .hero,
     body.page-about .subtext {
       min-height: calc(100vh - 120px);
@@ -473,9 +563,11 @@
       scroll-behavior: smooth;
     }
 
-    body.page-works .hero,
-    body.page-works .subtext {
-      display: none;
+    body.page-works .intro-slide {
+      min-width: 100vw;
+      min-height: calc(100vh - 120px);
+      scroll-snap-align: start;
+      padding: 0 16px;
     }
 
     body.page-works .works-slides {
@@ -493,13 +585,6 @@
       justify-items: end;
     }
 
-    body.page-works .hero,
-    body.page-works .subtext {
-      min-width: 100vw;
-      min-height: calc(100vh - 120px);
-      scroll-snap-align: start;
-    }
-
     /* Contact page palette */
     body.page-contact {
       --bg: #00C767;
@@ -513,6 +598,18 @@
 
     body.page-contact nav a:hover,
     body.page-contact nav a:focus-visible {
+      color: #ff0055;
+    }
+
+    body.page-contact .logo:hover,
+    body.page-contact .logo:focus-visible {
+      color: #ff0055;
+    }
+
+    body.page-contact .title-mili:hover,
+    body.page-contact .title-mili:focus-visible,
+    body.page-contact .title-land:hover,
+    body.page-contact .title-land:focus-visible {
       color: #ff0055;
     }
 
@@ -587,36 +684,40 @@
   </div>
 
   <main>
-    <div class="hero">
-      <div class="title-wrap">
-        <p class="eyebrow" id="eyebrow">Studio</p>
-        <h1 id="title">MiliLand</h1>
-        <p class="strap" id="strap" hidden></p>
+    <div class="intro-slide">
+      <div class="hero">
+        <div class="title-wrap">
+          <p class="eyebrow" id="eyebrow">Studio</p>
+          <h1 id="title">MiliLand</h1>
+          <p class="strap" id="strap" hidden></p>
+        </div>
       </div>
-    </div>
-    <div class="subtext" id="subtext">
-      <p>Your partner for all works, above the fold, under the hood, simple or complex.</p>
+      <div class="subtext" id="subtext">
+        <p>Your partner for all works, above the fold, under the hood, simple or complex.</p>
+      </div>
     </div>
     <div class="works-slides" id="works-slides">
       <div class="work-slide">
-        <div class="title-wrap">
-          <p class="eyebrow">Works</p>
-          <h1>MiliLand</h1>
-          <p class="strap" aria-hidden="true"></p>
+        <div class="brand-grid" aria-label="Brand logos">
+          <div class="brand-circle">Brand</div>
+          <div class="brand-circle">Brand</div>
+          <div class="brand-circle">Brand</div>
+          <div class="brand-circle">Brand</div>
+          <div class="brand-circle">Brand</div>
+          <div class="brand-circle">Brand</div>
+          <div class="brand-circle">Brand</div>
+          <div class="brand-circle">Brand</div>
+          <div class="brand-circle">Brand</div>
         </div>
-        <p class="work-copy">Selected works, built for the internet, standing proof of what is done here.</p>
       </div>
-      <div class="work-slide">
-        <div class="logo-box" aria-hidden="true"></div>
-        <p class="work-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a varius urna.</p>
-      </div>
-      <div class="work-slide">
-        <div class="logo-box" aria-hidden="true"></div>
-        <p class="work-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a varius urna.</p>
-      </div>
-      <div class="work-slide slide-right">
-        <div class="logo-box" aria-hidden="true"></div>
-        <p class="work-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a varius urna.</p>
+    </div>
+    <div class="about-slides" id="about-slides">
+      <div class="about-slide">
+        <div class="text-block">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ultricies massa vitae justo porta.</p>
+          <p>Curabitur eget lacus vitae lorem consequat varius ut at risus. Sed porttitor neque eget nunc pharetra porta.</p>
+          <p>Praesent commodo turpis at urna tincidunt, nec faucibus erat maximus.</p>
+        </div>
       </div>
     </div>
     <div class="scroll-hints" aria-hidden="true">
@@ -631,18 +732,14 @@
         eyebrow: "Studio",
         title: "MiliLand",
         strap: "",
-        subtext: "<p>Your partner for all works, above the fold, under the hood, simple or complex.</p>"
-      },
-      about: {
-        eyebrow: "Inside",
-        title: "MiliLand",
-        strap: "Fast, straight up, no nonsense — slide to the right.",
-        subtext: [
-          "<p>MiliLand Studio builds for the web &mdash; from single pages to large platforms. The aim is clear, durable work.</p>",
-          "<p>With 15 years of experience, the studio creates websites, custom tools, livestream setups with paywalls, and database projects. It also works in graphic design, branding, SEO, and campaigns.</p>",
-          "<p>MiliLand Studio moves fast across time zones and galaxies and adapts to each project.</p>"
-        ].join("")
-      },
+      subtext: "<p>Your partner for all works, above the fold, under the hood, simple or complex.</p>"
+    },
+    about: {
+      eyebrow: "Inside",
+      title: "MiliLand",
+      strap: "Lorem ipsum dolor sit amet.",
+      subtext: ""
+    },
       works: {
         eyebrow: "Works",
         title: "MiliLand",
@@ -666,6 +763,7 @@
     const strapEl = document.getElementById("strap");
     const subtextEl = document.getElementById("subtext");
     const worksSlides = document.getElementById("works-slides");
+    const aboutSlides = document.getElementById("about-slides");
     const logo = document.getElementById("logo");
     const navLinks = Array.from(document.querySelectorAll("nav a"));
     const scrollHints = document.querySelector(".scroll-hints");
@@ -710,9 +808,16 @@
       if (key === "about" || key === "works") {
         mainEl?.scrollTo({ left: 0, behavior: "auto" });
         updateScrollHints();
+        if (key === "about") {
+          worksSlides?.scrollLeft = 0;
+        }
+        if (key === "works") {
+          aboutSlides?.scrollTo({ left: 0, behavior: "auto" });
+        }
       } else {
         scrollHints?.classList.remove("show-left", "show-right");
         if (worksSlides) worksSlides.scrollLeft = 0;
+        aboutSlides?.scrollTo({ left: 0, behavior: "auto" });
       }
       navLinks.forEach(link => {
         const target = link.getAttribute("href").replace("#", "");
@@ -787,7 +892,12 @@
       miliEl.onclick = null;
       landEl.onclick = null;
 
-      if (currentPage === "home") {
+      if (currentPage === "works") {
+        miliEl.onclick = () => {
+          setPage("home");
+          history.pushState({ page: "home" }, "", "#home");
+        };
+      } else if (currentPage === "home") {
         miliEl.classList.add("disabled");
       } else if (currentPage === "contact") {
         miliEl.onclick = () => {
@@ -802,7 +912,12 @@
       }
 
       // Land: go forward (mailto on last page)
-      if (currentPage === "contact") {
+      if (currentPage === "works") {
+        landEl.onclick = () => {
+          setPage("contact");
+          history.pushState({ page: "contact" }, "", "#contact");
+        };
+      } else if (currentPage === "contact") {
         landEl.onclick = () => {
           window.location.href = "mailto:mili@mililand.com";
         };
