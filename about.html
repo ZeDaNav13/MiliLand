@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Studio MiliLand — Home</title>
+  <title>Inside — Studio MiliLand</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23F0EEE9'/%3E%3Cpath d='M10 50V14h8l14 22 14-22h8v36h-8V30l-12 18h-4L18 30v20z' fill='%23ff0055'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@300;400;600&family=Krub:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="page-home">
+<body class="page-works">
   <header>
     <a class="logo" id="logo" href="index.html">MiliLand</a>
     <nav aria-label="Primary">
-      <a href="about.html">Inside</a>
+      <a href="about.html" data-active="true">Inside</a>
       <a href="works.html">Works</a>
       <a href="contact.html">Contact</a>
     </nav>
@@ -23,8 +23,8 @@
     <button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu">/ / /</button>
     <nav id="mobile-menu" class="mobile-menu" aria-label="Mobile">
       <div class="menu-spacer"></div>
-      <a href="index.html" data-active="true">Home</a>
-      <a href="about.html">Inside</a>
+      <a href="index.html">Home</a>
+      <a href="about.html" data-active="true">Inside</a>
       <a href="works.html">Works</a>
       <a href="contact.html">Contact</a>
       <div class="menu-spacer"></div>
@@ -35,13 +35,32 @@
     <div class="intro-slide">
       <div class="hero">
         <div class="title-wrap">
-          <p class="eyebrow" id="eyebrow">Studio</p>
-          <h1 id="title"><span class="title-mili">Mili</span><span class="title-land">Land</span></h1>
-          <p class="strap" id="strap" hidden></p>
+          <p class="eyebrow">Works</p>
+          <h1><span class="title-mili">Mili</span><span class="title-land">Land</span></h1>
+          <p class="strap" hidden></p>
         </div>
       </div>
-      <div class="subtext" id="subtext">
-        <p>Your partner for all works, above the fold, under the hood, simple or complex.</p>
+      <div class="subtext">
+        <p>Selected works, built for the internet, standing proof of what is done here.</p>
+      </div>
+    </div>
+    <div class="works-slides" id="works-slides">
+      <div class="work-slide">
+        <div class="brand-grid" aria-label="Brand logos">
+          <div class="brand-circle">Brand</div>
+          <div class="brand-circle">Brand</div>
+          <div class="brand-circle">Brand</div>
+          <div class="brand-circle">Brand</div>
+          <div class="brand-circle">Brand</div>
+          <div class="brand-circle">Brand</div>
+          <div class="brand-circle">Brand</div>
+          <div class="brand-circle">Brand</div>
+          <div class="brand-circle">Brand</div>
+        </div>
+      </div>
+      <div class="work-slide slide-right">
+        <div class="logo-box" aria-hidden="true"></div>
+        <p class="work-copy">Launch-ready packages across product, brand, and engineering—shipped with the same crew that shapes them.</p>
       </div>
     </div>
   </main>

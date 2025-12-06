@@ -1,0 +1,696 @@
+:root {
+  --bg: #F0EEE9;
+  --accent: #ff0055;
+  --text: #ff0055;
+  --green: #00C767;
+  --yellow: #E7FF61;
+  --offwhite: #F0EEE9;
+  --stack-top: 22vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: "Krub", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+  color: var(--text);
+  mix-blend-mode: normal;
+}
+
+.logo {
+  font-size: 1.1rem;
+  letter-spacing: 0.16rem;
+  text-transform: none;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  font-family: "Chivo", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08rem;
+  font-family: "Chivo", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
+}
+
+nav a {
+  color: inherit;
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 160ms ease;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 180ms ease;
+}
+
+nav a:hover::after,
+nav a:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+nav a:hover,
+nav a:focus-visible {
+  color: var(--green);
+}
+
+main {
+  flex: 1;
+  display: grid;
+  gap: 16px;
+  place-items: start center;
+  align-content: start;
+  min-height: 100vh;
+  padding: var(--stack-top) 16px 64px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero {
+  display: grid;
+  gap: 16px;
+  justify-items: center;
+  width: min(1320px, 100%);
+  align-content: start;
+}
+
+.intro-slide {
+  display: grid;
+  gap: 14px;
+  justify-items: center;
+  align-content: start;
+  width: 100%;
+}
+
+.title-wrap {
+  display: grid;
+  gap: 4px;
+  justify-items: center;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 0.9rem;
+  letter-spacing: 0.18rem;
+  text-transform: uppercase;
+  font-family: "Chivo", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(3.5rem, 11vw, 8rem);
+  letter-spacing: 0.18rem;
+  text-transform: none;
+  font-family: "Chivo", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
+}
+
+.title-mili,
+.title-land {
+  display: inline-block;
+  cursor: pointer;
+  padding: 0 4px;
+  color: inherit;
+  transition: color 160ms ease;
+}
+
+.title-mili:hover,
+.title-mili:focus-visible,
+.title-land:hover,
+.title-land:focus-visible {
+  color: var(--green);
+}
+
+.strap {
+  margin: 2px 0 0;
+  font-size: 1.05rem;
+  line-height: 1.4;
+  font-weight: 400;
+  letter-spacing: 0.06rem;
+  opacity: 0.9;
+  font-family: "Chivo", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
+  display: block;
+  max-width: 35ch;
+  width: 100%;
+  text-align: center;
+}
+
+body.page-about .strap {
+  max-width: 28ch;
+  width: min(28ch, 90vw);
+  text-align: center;
+}
+
+.subtext {
+  margin: 0;
+  font-size: 1.05rem;
+  max-width: 35ch;
+  width: 100%;
+  justify-self: center;
+  opacity: 0.85;
+  display: grid;
+  gap: 12px;
+  text-align: center;
+  width: min(35ch, 90vw);
+  line-height: 1.4;
+  font-family: "Krub", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
+}
+
+.subtext p {
+  margin: 0;
+  max-width: 35ch;
+  width: 100%;
+  justify-self: center;
+  text-align: inherit;
+}
+
+.works-slides {
+  display: none;
+  gap: 0;
+}
+
+.work-slide {
+  min-width: 100vw;
+  min-height: calc(100vh - 120px);
+  padding: 0 24px;
+  display: grid;
+  gap: 18px;
+  align-content: start;
+  justify-items: center;
+  scroll-snap-align: start;
+}
+
+.work-slide .logo-box {
+  width: 160px;
+  height: 160px;
+  border: 4px solid currentColor;
+  border-radius: 8px;
+}
+
+.work-slide .work-copy {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.4;
+  text-align: center;
+  font-family: "Krub", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
+  max-width: 35ch;
+  width: 100%;
+}
+
+.brand-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(80px, 1fr));
+  gap: 16px;
+  width: min(420px, 80vw);
+  justify-items: center;
+}
+
+.info-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  width: min(1100px, 92vw);
+  align-items: stretch;
+}
+
+.info-card {
+  border: 3px solid currentColor;
+  border-radius: 12px;
+  padding: 16px 18px;
+  display: grid;
+  gap: 8px;
+  background: var(--offwhite);
+  color: var(--text);
+}
+
+.info-card .card-label {
+  margin: 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.12rem;
+  text-transform: uppercase;
+  font-family: "Chivo", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
+  opacity: 0.8;
+}
+
+.info-card .card-title {
+  margin: 0;
+  font-size: 1.15rem;
+  letter-spacing: 0.03rem;
+  font-weight: 600;
+  font-family: "Chivo", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
+}
+
+.info-card .card-body {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-family: "Krub", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
+}
+
+.info-card .pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.info-card .pill {
+  border: 2px solid currentColor;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  letter-spacing: 0.02rem;
+  background: transparent;
+}
+
+.about-slides {
+  display: none;
+  gap: 0;
+}
+
+.about-slide {
+  min-width: 100vw;
+  min-height: calc(100vh - 120px);
+  padding: 0 32px;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  scroll-snap-align: start;
+}
+
+.text-block {
+  max-width: 60ch;
+  width: min(90vw, 60ch);
+  display: grid;
+  gap: 16px;
+  text-align: center;
+  font-family: "Krub", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+@media (max-height: 720px) {
+  .brand-grid {
+    grid-template-columns: repeat(4, minmax(70px, 1fr));
+    width: min(520px, 90vw);
+  }
+
+  .brand-grid .brand-circle:nth-of-type(9) {
+    display: none;
+  }
+}
+
+.brand-circle {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  border: 4px solid currentColor;
+  display: grid;
+  place-items: center;
+  font-family: "Krub", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08rem;
+}
+
+body.page-about .about-slides {
+  display: flex;
+  width: 100%;
+}
+
+.work-slide.slide-right {
+  justify-items: end;
+  text-align: right;
+}
+
+.work-slide.slide-right .work-copy {
+  text-align: right;
+}
+
+body.page-works h1,
+body.page-works .eyebrow,
+body.page-works .strap,
+body.page-works .subtext,
+body.page-works .subtext p,
+body.page-works .work-copy {
+  color: #ff0055;
+}
+
+body.page-works footer {
+  color: #ff0055;
+}
+
+body.page-contact h1,
+body.page-contact .eyebrow,
+body.page-contact .strap,
+body.page-contact .subtext,
+body.page-contact .subtext p,
+body.page-contact .work-copy {
+  color: #E7FF61;
+}
+
+body.page-contact footer {
+  color: #E7FF61;
+}
+
+footer {
+  position: fixed;
+  right: 24px;
+  bottom: 20px;
+  font-size: 0.85rem;
+  letter-spacing: 0.04rem;
+  color: inherit;
+  font-family: "Krub", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
+}
+
+.email-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+nav a[data-active="true"]::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.mobile-bar {
+  display: none;
+}
+
+.menu-toggle {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 1.8rem;
+  letter-spacing: 0.3rem;
+  cursor: pointer;
+}
+
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  top: 56px;
+  left: 0;
+  right: 0;
+  padding: 16px 24px 24px;
+  gap: 12px;
+  background: var(--bg);
+  color: var(--text);
+  z-index: 20;
+}
+
+.menu-spacer {
+  height: 12px;
+}
+
+.mobile-menu a {
+  color: inherit;
+  text-decoration: none;
+  font-size: 1.05rem;
+  letter-spacing: 0.12rem;
+  text-transform: uppercase;
+}
+
+.scroll-hints {
+  position: fixed;
+  top: 28vh;
+  bottom: auto;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 12px;
+  color: var(--offwhite);
+  opacity: 0;
+  pointer-events: none;
+  transform: none;
+  transition: opacity 160ms ease;
+  font-size: clamp(3.5rem, 11vw, 8rem);
+  letter-spacing: -0.1rem;
+}
+
+.scroll-hints .chevron {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  line-height: 1;
+  opacity: 0;
+  transition: opacity 160ms ease;
+  padding: 0;
+  background: none;
+  width: 32px;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.scroll-hints.show-left .chevron-left {
+  opacity: 0.32;
+}
+
+.scroll-hints.show-right .chevron-right {
+  opacity: 0.32;
+}
+
+/* Works page palette */
+body.page-works {
+  --bg: #E7FF61;
+  --text: #ff0055;
+}
+
+body.page-works header,
+body.page-works footer {
+  color: #ff0055;
+}
+
+body.page-works nav a:hover,
+body.page-works nav a:focus-visible {
+  color: var(--green);
+}
+
+body.page-works .logo:hover,
+body.page-works .logo:focus-visible {
+  color: var(--green);
+}
+
+body.page-about {
+  --bg: #E7FF61;
+  --text: #ff0055;
+}
+
+body.page-about header,
+body.page-about footer {
+  color: var(--text);
+}
+
+body.page-about nav a:hover,
+body.page-about nav a:focus-visible,
+body.page-about .logo:hover,
+body.page-about .logo:focus-visible {
+  color: var(--green);
+}
+
+body.page-about .scroll-hints {
+  opacity: 1;
+  pointer-events: none;
+  color: var(--text);
+}
+
+body.page-works .scroll-hints {
+  opacity: 1;
+  pointer-events: none;
+  color: var(--yellow);
+}
+
+body.page-about main,
+body.page-works main {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  overflow-x: auto;
+  gap: 0;
+  padding: var(--stack-top) 0 64px;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+body:not(.page-about):not(.page-works) .hero {
+  min-height: auto;
+}
+
+body:not(.page-about):not(.page-works) main {
+  scroll-snap-type: none;
+}
+
+body.page-about .intro-slide,
+body.page-about .hero,
+body.page-about .subtext {
+  min-height: calc(100vh - 120px);
+  min-width: 100vw;
+  display: grid;
+  place-items: start center;
+  align-content: start;
+  padding: 0 24px;
+  scroll-snap-align: start;
+}
+
+body.page-about .subtext {
+  text-align: center;
+  width: min(35ch, 90vw);
+  max-width: 35ch;
+  justify-items: center;
+  padding: 0 48px;
+}
+
+body.page-about .subtext p {
+  text-align: center;
+  max-width: 35ch;
+}
+
+body.page-works main {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  overflow-x: auto;
+  gap: 0;
+  padding: var(--stack-top) 0 64px;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+body.page-works .intro-slide {
+  min-width: 100vw;
+  min-height: calc(100vh - 120px);
+  scroll-snap-align: start;
+  padding: 0 16px;
+}
+
+body.page-works .works-slides {
+  display: flex;
+  width: 100%;
+}
+
+body.page-works .work-slide {
+  align-content: start;
+  justify-items: center;
+  padding: 0 32px;
+}
+
+body.page-works .work-slide.slide-right {
+  justify-items: end;
+}
+
+/* Contact page palette */
+body.page-contact {
+  --bg: #00C767;
+  --text: #E7FF61;
+}
+
+body.page-contact header,
+body.page-contact footer {
+  color: #E7FF61;
+}
+
+body.page-contact nav a:hover,
+body.page-contact nav a:focus-visible {
+  color: #ff0055;
+}
+
+body.page-contact .logo:hover,
+body.page-contact .logo:focus-visible {
+  color: #ff0055;
+}
+
+body.page-contact .title-mili:hover,
+body.page-contact .title-mili:focus-visible,
+body.page-contact .title-land:hover,
+body.page-contact .title-land:focus-visible {
+  color: #ff0055;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --stack-top: 14vh;
+  }
+
+  header {
+    display: none;
+  }
+
+  .mobile-bar {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    display: flex;
+    justify-content: flex-end;
+    z-index: 30;
+  }
+
+  body.menu-open .mobile-menu {
+    display: flex;
+  }
+
+  body.menu-open {
+    overflow: hidden;
+  }
+
+  .work-slide .logo-box {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 640px) {
+  header {
+    padding: 16px 20px;
+  }
+
+  nav {
+    gap: 0.9rem;
+    font-size: 0.85rem;
+  }
+
+  h1 {
+    letter-spacing: 0.18rem;
+  }
+}
