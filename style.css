@@ -256,7 +256,7 @@ h1 {
   display: grid;
   grid-template-columns: repeat(3, minmax(80px, 1fr));
   gap: 32px;
-  width: min(420px, 80vw);
+  width: min(360px, 70vw);
   justify-items: center;
 }
 
@@ -563,7 +563,7 @@ body.page-works .logo:focus-visible {
 body.page-works .scroll-hints {
   opacity: 1;
   pointer-events: none;
-  color: var(--yellow);
+  color: rgb(255, 0, 85);
 }
 
 body.page-about main {
@@ -818,6 +818,16 @@ body.modal-open {
   .work-slide .logo-box {
     width: 120px;
     height: 120px;
+  }
+
+  .brand-grid {
+    grid-template-columns: repeat(2, minmax(120px, 1fr));
+    gap: 24px;
+    width: min(320px, 88vw);
+  }
+
+  .brand-grid .brand-circle:nth-of-type(9) {
+    display: none;
   }
 }
 
