@@ -177,6 +177,11 @@ h1 {
   text-decoration: none;
 }
 
+.hero-link:hover,
+.hero-link:focus-visible {
+  color: var(--green);
+}
+
 .strap {
   margin: 2px 0 0;
   font-size: 1.05rem;
@@ -250,7 +255,7 @@ h1 {
 .brand-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(80px, 1fr));
-  gap: 16px;
+  gap: 32px;
   width: min(420px, 80vw);
   justify-items: center;
 }
