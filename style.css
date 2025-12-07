@@ -415,6 +415,11 @@ footer {
   text-decoration: none;
 }
 
+.email-link:hover,
+.email-link:focus-visible {
+  color: #ff0055;
+}
+
 nav a[data-active="true"]::after {
   transform: scaleX(1);
   transform-origin: left;
