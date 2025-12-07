@@ -9,6 +9,9 @@
   const contactModal = document.getElementById("contact-modal");
   const contactOpeners = document.querySelectorAll("[data-open-contact]");
   const contactClosers = document.querySelectorAll("[data-close-contact]");
+  const contactForm = contactModal?.querySelector(".contact-form");
+  const contactSubmit = contactModal?.querySelector(".contact-submit");
+  const contactInputs = contactForm ? Array.from(contactForm.querySelectorAll("input")) : [];
 
   function updateScrollHints() {
     const inSlides = body.classList.contains("page-about") || body.classList.contains("page-works");
@@ -83,5 +86,42 @@
     if (e.target === contactModal) {
       closeContactModal();
     }
+  });
+
+  contactForm?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!contactSubmit) return;
+
+    const payload = contactInputs.reduce((acc, input) => {
+      acc[input.name] = input.value.trim();
+      return acc;
+    }, {});
+
+    const mailto = new URL("mailto:mili@mililand.com");
+    const lines = [
+      `Name: ${payload.name || ""}`,
+      `Email: ${payload.email || ""}`,
+      `Subject: ${payload.subject || ""}`,
+    ].join("\n");
+    mailto.searchParams.set("subject", payload.subject || "Hello from the site");
+    mailto.searchParams.set("body", lines);
+
+    contactSubmit.textContent = "Message sent";
+    contactSubmit.style.background = "var(--offwhite)";
+    contactSubmit.style.color = "#ff0055";
+    contactSubmit.style.borderColor = "transparent";
+    contactSubmit.disabled = true;
+
+    window.location.href = mailto.toString();
+
+    setTimeout(() => {
+      closeContactModal();
+      contactInputs.forEach(input => input.value = "");
+      contactSubmit.textContent = "Send";
+      contactSubmit.style.background = "#ff0055";
+      contactSubmit.style.color = "#fff";
+      contactSubmit.style.borderColor = "#ff0055";
+      contactSubmit.disabled = false;
+    }, 1500);
   });
 })();

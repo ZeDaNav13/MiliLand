@@ -680,6 +680,8 @@ body.modal-open {
   font: inherit;
   color: inherit;
   cursor: pointer;
+  letter-spacing: inherit;
+  line-height: 1;
 }
 
 .hero-button:hover,
