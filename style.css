@@ -334,7 +334,7 @@ h1 {
   max-width: 60ch;
   width: min(90vw, 60ch);
   display: grid;
-  gap: 16px;
+  gap: 4px;
   text-align: center;
   font-family: "Krub", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
   font-size: 1.05rem;

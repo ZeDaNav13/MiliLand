@@ -26,7 +26,7 @@
     if (!mainEl) return;
     const inSlides = body.classList.contains("page-about") || body.classList.contains("page-works");
     if (!inSlides) return;
-    const delta = mainEl.clientWidth * 0.85;
+    const delta = mainEl.clientWidth;
     const next = direction === "left" ? mainEl.scrollLeft - delta : mainEl.scrollLeft + delta;
     mainEl.scrollTo({ left: next, behavior: "smooth" });
   }
