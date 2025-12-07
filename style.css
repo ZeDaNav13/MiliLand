@@ -745,10 +745,7 @@ body.modal-open {
 
 .contact-label {
   display: grid;
-  gap: 6px;
-  font-size: 0.95rem;
-  letter-spacing: 0.02rem;
-  text-align: left;
+  gap: 0;
 }
 
 .contact-label input {
