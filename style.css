@@ -659,6 +659,125 @@ body.page-contact .title-land:focus-visible {
   color: #ff0055;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
+.hero-button {
+  background: none;
+  border: none;
+  padding: 0 4px;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.hero-button:hover,
+.hero-button:focus-visible {
+  color: inherit;
+}
+
+.contact-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  z-index: 100;
+  background: rgba(3, 74, 127, 0.9);
+  padding-top: var(--stack-top);
+  padding-inline: 16px;
+  padding-bottom: 24px;
+  overflow-y: auto;
+}
+
+.contact-modal[aria-hidden="false"] {
+  display: flex;
+}
+
+.contact-modal-backdrop {
+  display: none;
+}
+
+.contact-modal-content {
+  position: relative;
+  background: transparent;
+  color: #ff0055;
+  padding: 24px 24px 28px;
+  width: min(520px, 92vw);
+  display: grid;
+  gap: 16px;
+  z-index: 1;
+}
+
+.contact-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #fff;
+}
+
+.contact-title {
+  margin: 0;
+  font-size: 1.4rem;
+  letter-spacing: 0.04rem;
+  font-family: "Chivo", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
+}
+
+.contact-form {
+  display: grid;
+  gap: 24px;
+}
+
+.contact-label {
+  display: grid;
+  gap: 6px;
+  font-size: 0.95rem;
+  letter-spacing: 0.02rem;
+  text-align: left;
+}
+
+.contact-label input {
+  padding: 10px 12px;
+  border-radius: 0;
+  border: none;
+  font-size: 1rem;
+  font-family: inherit;
+  background: transparent;
+  color: #fff;
+  border-bottom: 2px solid #ff0055;
+}
+
+.contact-label input:focus-visible {
+  outline: none;
+  border-bottom-color: #ff0055;
+}
+
+.contact-label input::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.contact-submit {
+  margin-top: 4px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 2px solid #ff0055;
+  background: #ff0055;
+  color: #fff;
+  font-size: 1rem;
+  letter-spacing: 0.04rem;
+  cursor: pointer;
+}
+
+.contact-submit:hover,
+.contact-submit:focus-visible {
+  filter: brightness(0.92);
+}
+
 @media (max-width: 768px) {
   :root {
     --stack-top: 14vh;

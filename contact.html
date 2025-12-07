@@ -36,19 +36,40 @@
       <div class="hero">
         <div class="title-wrap">
           <p class="eyebrow">Contact</p>
-          <h1><a class="email-link" href="mailto:mili@mililand.com">MiliLand</a></h1>
+          <h1><a class="title-mili hero-link" href="works.html">Mili</a><button class="title-land hero-link hero-button" type="button" data-open-contact>Land</button></h1>
           <p class="strap" hidden></p>
         </div>
       </div>
       <div class="subtext">
-        <p>Say hello and we’ll get back fast.</p>
-        <p><a class="email-link" href="mailto:mili@mililand.com">mili@mililand.com</a></p>
+        <p>Say hello and we’ll get back fast.<a class="email-link" href="mailto:mili@mililand.com"> Is email ok?</a></p>
       </div>
     </div>
   </main>
   <div class="scroll-hints" aria-hidden="true">
     <span class="chevron chevron-left">‹</span>
     <span class="chevron chevron-right">›</span>
+  </div>
+  <div id="contact-modal" class="contact-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Contact form">
+    <div class="contact-modal-backdrop" data-close-contact></div>
+    <div class="contact-modal-content">
+      <button class="contact-close" type="button" aria-label="Close contact form" data-close-contact>×</button>
+      <h2 class="contact-title">Hello!</h2>
+      <form class="contact-form">
+        <label class="contact-label">
+          Name
+          <input type="text" name="name" placeholder="Your name">
+        </label>
+        <label class="contact-label">
+          Email
+          <input type="email" name="email" placeholder="you@example.com">
+        </label>
+        <label class="contact-label">
+          Subject
+          <input type="text" name="subject" placeholder="What’s this about?">
+        </label>
+        <button class="contact-submit" type="submit">Send</button>
+      </form>
+    </div>
   </div>
   <footer>© Studio MiliLand 2026</footer>
   <script src="main.js"></script>

@@ -6,6 +6,9 @@
   const chevronRight = document.querySelector(".chevron-right");
   const menuToggle = document.getElementById("menu-toggle");
   const mobileMenu = document.getElementById("mobile-menu");
+  const contactModal = document.getElementById("contact-modal");
+  const contactOpeners = document.querySelectorAll("[data-open-contact]");
+  const contactClosers = document.querySelectorAll("[data-close-contact]");
 
   function updateScrollHints() {
     const inSlides = body.classList.contains("page-about") || body.classList.contains("page-works");
@@ -48,5 +51,37 @@
     if (!link) return;
     body.classList.remove("menu-open");
     menuToggle?.setAttribute("aria-expanded", "false");
+  });
+
+  function openContactModal() {
+    if (!contactModal) return;
+    contactModal.setAttribute("aria-hidden", "false");
+    body.classList.add("modal-open");
+  }
+
+  function closeContactModal() {
+    if (!contactModal) return;
+    contactModal.setAttribute("aria-hidden", "true");
+    body.classList.remove("modal-open");
+  }
+
+  contactOpeners.forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      openContactModal();
+    });
+  });
+
+  contactClosers.forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      closeContactModal();
+    });
+  });
+
+  contactModal?.addEventListener("click", (e) => {
+    if (e.target === contactModal) {
+      closeContactModal();
+    }
   });
 })();
