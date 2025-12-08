@@ -4,9 +4,8 @@
   --text: #ff0055;
   --green: #00C767;
   --yellow: #E7FF61;
-  --blue: #0055FF;
   --offwhite: #F0EEE9;
-  --stack-top: 26vh;
+  --stack-top: 22vh;
 }
 
 * {
@@ -446,9 +445,9 @@ nav a[data-active="true"]::after {
 
 .mobile-menu {
   display: none;
-  flex-direction: column-reverse;
+  flex-direction: column;
   position: fixed;
-  bottom: 64px;
+  top: 56px;
   left: 0;
   right: 0;
   padding: 16px 24px 24px;
@@ -566,7 +565,7 @@ body.page-works .logo:focus-visible {
 
 body.page-works .title-mili:hover,
 body.page-works .title-mili:focus-visible {
-  color: var(--blue);
+  color: var(--offwhite);
 }
 
 body.page-works .title-land:hover,
@@ -678,7 +677,7 @@ body.page-contact .logo:focus-visible {
 
 body.page-contact .title-mili:hover,
 body.page-contact .title-mili:focus-visible {
-  color: var(--blue);
+  color: #fff;
 }
 
 body.page-contact .title-land:hover,
@@ -806,25 +805,20 @@ body.modal-open {
 
 @media (max-width: 768px) {
   :root {
-    --stack-top: 18vh;
+    --stack-top: 14vh;
   }
 
   header {
     display: none;
   }
 
-  footer {
-    top: 20px;
-    bottom: auto;
-  }
-
   .mobile-bar {
     position: fixed;
-    bottom: 12px;
+    top: 12px;
     left: 12px;
-    right: auto;
+    right: 12px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: flex-end;
     z-index: 30;
   }
 
