@@ -4,8 +4,9 @@
   --text: #ff0055;
   --green: #00C767;
   --yellow: #E7FF61;
+  --blue: #0055FF;
   --offwhite: #F0EEE9;
-  --stack-top: 22vh;
+  --stack-top: 26vh;
 }
 
 * {
@@ -408,7 +409,7 @@ body.page-contact footer {
 footer {
   position: fixed;
   right: 24px;
-  bottom: 20px;
+  top: 20px;
   font-size: 0.85rem;
   letter-spacing: 0.04rem;
   color: inherit;
@@ -445,9 +446,9 @@ nav a[data-active="true"]::after {
 
 .mobile-menu {
   display: none;
-  flex-direction: column;
+  flex-direction: column-reverse;
   position: fixed;
-  top: 56px;
+  bottom: 64px;
   left: 0;
   right: 0;
   padding: 16px 24px 24px;
@@ -532,11 +533,14 @@ body.page-about nav a:hover,
 body.page-about nav a:focus-visible,
 body.page-about .logo:hover,
 body.page-about .logo:focus-visible,
-body.page-about .title-mili:hover,
-body.page-about .title-mili:focus-visible,
 body.page-about .title-land:hover,
 body.page-about .title-land:focus-visible {
   color: var(--green);
+}
+
+body.page-about .title-mili:hover,
+body.page-about .title-mili:focus-visible {
+  color: var(--yellow);
 }
 
 body.page-about .scroll-hints {
@@ -557,6 +561,16 @@ body.page-works nav a:focus-visible {
 
 body.page-works .logo:hover,
 body.page-works .logo:focus-visible {
+  color: var(--green);
+}
+
+body.page-works .title-mili:hover,
+body.page-works .title-mili:focus-visible {
+  color: var(--blue);
+}
+
+body.page-works .title-land:hover,
+body.page-works .title-land:focus-visible {
   color: var(--green);
 }
 
@@ -663,7 +677,10 @@ body.page-contact .logo:focus-visible {
 }
 
 body.page-contact .title-mili:hover,
-body.page-contact .title-mili:focus-visible,
+body.page-contact .title-mili:focus-visible {
+  color: var(--blue);
+}
+
 body.page-contact .title-land:hover,
 body.page-contact .title-land:focus-visible {
   color: #ff0055;
@@ -789,7 +806,7 @@ body.modal-open {
 
 @media (max-width: 768px) {
   :root {
-    --stack-top: 14vh;
+    --stack-top: 18vh;
   }
 
   header {
@@ -798,11 +815,11 @@ body.modal-open {
 
   .mobile-bar {
     position: fixed;
-    top: 12px;
+    bottom: 12px;
     left: 12px;
-    right: 12px;
+    right: auto;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     z-index: 30;
   }
 
