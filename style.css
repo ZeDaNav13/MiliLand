@@ -355,9 +355,6 @@ h1 {
     width: min(520px, 90vw);
   }
 
-  .brand-grid .brand-circle:nth-of-type(9) {
-    display: none;
-  }
 }
 
 .brand-circle {
@@ -371,11 +368,104 @@ h1 {
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.08rem;
+  cursor: pointer;
+  transition: transform 160ms ease, background-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
+}
+
+.brand-circle:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.08);
+}
+
+.brand-circle:active {
+  transform: scale(0.97);
 }
 
 .work-slide.slide-right {
   justify-items: end;
   text-align: right;
+}
+
+.work-detail-slide {
+  min-width: 100vw;
+  min-height: calc(100vh - 120px);
+  padding: 0 calc(var(--edge-gap) + var(--chevron-size) + var(--chevron-buffer)) 48px;
+  display: grid;
+  align-content: start;
+  justify-items: center;
+  scroll-snap-align: start;
+}
+
+.detail-panel {
+  width: min(760px, 90vw);
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 18px;
+  align-content: start;
+  justify-items: center;
+}
+
+.detail-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 14px;
+  align-self: center;
+}
+
+.detail-circle {
+  width: 62px;
+  height: 62px;
+  font-size: 1rem;
+}
+
+.detail-title {
+  font-family: "Chivo", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
+  font-size: clamp(2.8rem, 6.5vw, 3.6rem);
+  letter-spacing: 0.12rem;
+  text-transform: none;
+  margin: 0;
+  text-align: left;
+  line-height: 62px;
+}
+
+.detail-body {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: left;
+  font-family: "Krub", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
+  font-size: 1.12rem;
+  line-height: 1.6;
+  align-self: center;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.detail-tags {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: center;
+  margin-top: 0;
+  padding-bottom: 12px;
+}
+
+.detail-pill {
+  border: 2px solid currentColor;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-family: "Krub", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.04rem;
+  background: transparent;
 }
 
 .work-slide.slide-right .work-copy {
@@ -420,7 +510,8 @@ footer {
 
 .email-link {
   color: inherit;
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
 }
 
 .email-link:hover,
@@ -475,14 +566,15 @@ nav a[data-active="true"]::after {
 
 .scroll-hints {
   position: fixed;
-  top: 28vh;
+  top: 35%;
+  transform: translateY(-50%);
   bottom: auto;
-  left: 0;
-  right: 0;
+  left: calc(var(--edge-gap) + 8px);
+  right: calc(var(--edge-gap) + 8px);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 var(--edge-gap);
+  padding: 0;
   color: var(--offwhite);
   opacity: 0;
   pointer-events: none;
@@ -495,23 +587,43 @@ nav a[data-active="true"]::after {
 .scroll-hints .chevron {
   display: flex;
   align-items: center;
-  height: 100%;
+  justify-content: center;
+  position: relative;
+  height: var(--chevron-size);
   line-height: 1;
   opacity: 0;
   transition: opacity 160ms ease;
   padding: 0;
   background: none;
   width: var(--chevron-size);
-  pointer-events: auto;
+  pointer-events: none;
   cursor: pointer;
+  font-size: 0;
+}
+
+.scroll-hints .chevron::before {
+  content: "";
+  display: block;
+  width: 18px;
+  height: 18px;
+  border: 5px solid currentColor;
+  border-top: none;
+  border-right: none;
+  transform: rotate(45deg);
+}
+
+.scroll-hints .chevron-right::before {
+  transform: rotate(-135deg);
 }
 
 .scroll-hints.show-left .chevron-left {
   opacity: 0.65;
+  pointer-events: auto;
 }
 
 .scroll-hints.show-right .chevron-right {
   opacity: 0.65;
+  pointer-events: auto;
 }
 
 /* Works page palette */
@@ -688,6 +800,12 @@ body.page-contact .title-land:focus-visible {
   color: #ff0055;
 }
 
+body.page-contact .title-land {
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 4px;
+}
+
 body.modal-open {
   overflow: hidden;
 }
@@ -847,6 +965,38 @@ body.modal-open {
   .brand-grid .brand-circle:nth-of-type(9) {
     display: none;
   }
+
+  .work-detail-slide {
+    align-content: start;
+    padding-top: 0;
+  }
+
+  .detail-panel {
+    width: min(540px, 84vw);
+    gap: 16px;
+  }
+
+  .detail-header {
+    gap: 14px;
+  }
+
+  .detail-circle {
+    width: 72px;
+    height: 72px;
+  }
+
+  .detail-title {
+    font-size: clamp(1.8rem, 9vw, 3rem);
+  }
+
+  .detail-body,
+  .detail-tags {
+    width: min(520px, 84vw);
+  }
+
+  .detail-body {
+    max-width: min(520px, 84vw);
+  }
 }
 
 @media (max-width: 640px) {
@@ -871,5 +1021,25 @@ body.modal-open {
   .subtext {
     max-width: 32ch;
     width: min(82vw, 32ch);
+  }
+
+  .detail-header {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .detail-title {
+    letter-spacing: 0.12rem;
+  }
+
+  .detail-body {
+    font-size: 1rem;
+    max-height: 50vh;
+    width: min(78vw, 440px);
+  }
+
+  .detail-pill {
+    font-size: 0.9rem;
+    padding: 7px 12px;
   }
 }
