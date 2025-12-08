@@ -409,7 +409,7 @@ body.page-contact footer {
 footer {
   position: fixed;
   right: 24px;
-  top: 20px;
+  bottom: 20px;
   font-size: 0.85rem;
   letter-spacing: 0.04rem;
   color: inherit;
@@ -811,6 +811,11 @@ body.modal-open {
 
   header {
     display: none;
+  }
+
+  footer {
+    top: 20px;
+    bottom: auto;
   }
 
   .mobile-bar {
