@@ -6,6 +6,9 @@
   --yellow: #E7FF61;
   --offwhite: #F0EEE9;
   --stack-top: 22vh;
+  --edge-gap: 5px;
+  --chevron-size: 32px;
+  --chevron-buffer: 10px;
 }
 
 * {
@@ -102,7 +105,7 @@ main {
   place-items: start center;
   align-content: start;
   min-height: 100vh;
-  padding: var(--stack-top) 16px 64px;
+  padding: var(--stack-top) calc(var(--edge-gap) + var(--chevron-size) + var(--chevron-buffer)) 64px;
   text-align: center;
   overflow: hidden;
 }
@@ -227,7 +230,7 @@ h1 {
 .work-slide {
   min-width: 100vw;
   min-height: calc(100vh - 120px);
-  padding: 0 24px;
+  padding: 0 calc(var(--edge-gap) + var(--chevron-size) + var(--chevron-buffer));
   display: grid;
   gap: 18px;
   align-content: start;
@@ -328,7 +331,7 @@ h1 {
 .about-slide {
   min-width: 100vw;
   min-height: calc(100vh - 120px);
-  padding: 0 32px;
+  padding: 0 calc(var(--edge-gap) + var(--chevron-size) + var(--chevron-buffer));
   display: grid;
   align-content: center;
   justify-items: center;
@@ -479,7 +482,7 @@ nav a[data-active="true"]::after {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 12px;
+  padding: 0 var(--edge-gap);
   color: var(--offwhite);
   opacity: 0;
   pointer-events: none;
@@ -498,7 +501,7 @@ nav a[data-active="true"]::after {
   transition: opacity 160ms ease;
   padding: 0;
   background: none;
-  width: 32px;
+  width: var(--chevron-size);
   pointer-events: auto;
   cursor: pointer;
 }
@@ -627,7 +630,7 @@ body.page-works main {
   align-items: flex-start;
   overflow-x: auto;
   gap: 0;
-  padding: var(--stack-top) 0 64px;
+  padding: var(--stack-top) calc(var(--edge-gap) + var(--chevron-size) + var(--chevron-buffer)) 64px;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
 }
@@ -636,7 +639,7 @@ body.page-works .intro-slide {
   min-width: 100vw;
   min-height: calc(100vh - 120px);
   scroll-snap-align: start;
-  padding: 0 16px;
+  padding: 0 calc(var(--edge-gap) + var(--chevron-size) + var(--chevron-buffer));
 }
 
 body.page-works .works-slides {
@@ -647,7 +650,7 @@ body.page-works .works-slides {
 body.page-works .work-slide {
   align-content: start;
   justify-items: center;
-  padding: 0 32px;
+  padding: 0 calc(var(--edge-gap) + var(--chevron-size) + var(--chevron-buffer));
 }
 
 body.page-works .work-slide.slide-right {
@@ -858,5 +861,15 @@ body.modal-open {
 
   h1 {
     letter-spacing: 0.18rem;
+  }
+
+  .text-block {
+    width: min(82vw, 52ch);
+  }
+
+  .strap,
+  .subtext {
+    max-width: 32ch;
+    width: min(82vw, 32ch);
   }
 }
