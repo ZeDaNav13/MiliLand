@@ -261,6 +261,7 @@ h1 {
   gap: 32px;
   width: min(360px, 70vw);
   justify-items: center;
+  perspective: 1200px;
 }
 
 .info-cards {
@@ -369,7 +370,15 @@ h1 {
   text-transform: uppercase;
   letter-spacing: 0.08rem;
   cursor: pointer;
-  transition: transform 160ms ease, background-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
+  transition: transform 320ms ease, background-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
+  position: relative;
+  overflow: hidden;
+  perspective: 1000px;
+}
+
+.brand-circle.is-flip {
+  transform-style: flat;
+  transition: box-shadow 160ms ease;
 }
 
 .brand-circle:focus-visible {
@@ -420,6 +429,64 @@ h1 {
   width: 62px;
   height: 62px;
   font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.detail-circle.has-icon,
+.brand-circle.has-icon {
+  color: var(--text);
+  border-color: var(--text);
+}
+
+.brand-circle .circle-face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  backface-visibility: hidden;
+  transform: none;
+  transform-style: flat;
+  transition: opacity 200ms ease;
+  opacity: 0;
+}
+
+.brand-circle.has-icon .face-front {
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 72%;
+  opacity: 1;
+}
+
+.brand-circle.has-icon .face-back {
+  background: var(--text);
+  color: var(--offwhite);
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  font-size: 0.95rem;
+  text-align: center;
+  opacity: 0;
+}
+
+.detail-circle.has-icon {
+  border-color: var(--text);
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 72%;
+}
+
+.brand-circle.is-flip:hover .face-front,
+.brand-circle.is-flip:focus-visible .face-front {
+  opacity: 0;
+}
+
+.brand-circle.is-flip:hover .face-back,
+.brand-circle.is-flip:focus-visible .face-back {
+  opacity: 1;
 }
 
 .detail-title {
@@ -429,7 +496,7 @@ h1 {
   text-transform: none;
   margin: 0;
   text-align: left;
-  line-height: 62px;
+  line-height: 1.02;
 }
 
 .detail-body {
@@ -459,13 +526,14 @@ h1 {
 }
 
 .detail-pill {
-  border: 2px solid currentColor;
+  border: 4px solid #ff0055;
   border-radius: 999px;
   padding: 8px 14px;
   font-family: "Krub", "Helvetica Neue", "Futura", "Avenir Next", sans-serif;
   font-size: 0.95rem;
   letter-spacing: 0.04rem;
-  background: transparent;
+  background: var(--green);
+  color: var(--yellow);
 }
 
 .work-slide.slide-right .work-copy {
@@ -511,7 +579,9 @@ footer {
 .email-link {
   color: inherit;
   text-decoration: underline;
-  text-decoration-thickness: 2px;
+  text-decoration-thickness: 4px;
+  text-underline-offset: 4px;
+  text-decoration-color: #ff0055;
 }
 
 .email-link:hover,
@@ -522,6 +592,19 @@ footer {
 nav a[data-active="true"]::after {
   transform: scaleX(1);
   transform-origin: left;
+  background: currentColor;
+}
+
+body.page-about nav a[data-active="true"]::after {
+  background: var(--green);
+}
+
+body.page-works nav a[data-active="true"]::after {
+  background: var(--green);
+}
+
+body.page-contact nav a[data-active="true"]::after {
+  background: #ff0055;
 }
 
 .mobile-bar {
@@ -802,8 +885,9 @@ body.page-contact .title-land:focus-visible {
 
 body.page-contact .title-land {
   text-decoration: underline;
-  text-decoration-thickness: 3px;
-  text-underline-offset: 4px;
+  text-decoration-thickness: 6px;
+  text-underline-offset: 6px;
+  text-decoration-color: #ff0055;
 }
 
 body.modal-open {
@@ -1030,6 +1114,7 @@ body.modal-open {
 
   .detail-title {
     letter-spacing: 0.12rem;
+    font-size: clamp(1.8rem, 6vw, 2.4rem);
   }
 
   .detail-body {

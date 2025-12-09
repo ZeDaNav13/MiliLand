@@ -31,9 +31,11 @@
   const projectData = isWorks ? {
     A: {
       label: "A",
-      name: "Project A",
-      description: "Global launch site built for speed and scale. We set up modular heroes, localized CTA routing, and a component library that marketing can reuse without engineering. Performance budgets, Core Web Vitals tuning, and optimized media keep the site fast on low-end devices. Analytics wiring tracks scroll depth, video intent, and checkout signals so the growth team can act on clean data. We added A/B-ready slots, microcopy variants, and a clear handoff process so future campaigns ship quickly. The outcome: a repeatable launch stack that is durable, fast, and easy for the team to update.",
-      tags: ["SEO", "Branding", "Campaigns"]
+      name: "ASSITEJ International",
+      description: "ASSITEJ International’s public site, built in WordPress (Salient theme) with Yoast SEO, multilingual structure, and rich resource sections. We organized content for a global network: news, events, opportunities, membership info, and a resource library. Performance passes tightened image delivery; accessibility and responsive tweaks keep pages usable on mobile. Search is improved via taxonomy-driven navigation and on-page anchors. Analytics and structured metadata are present through Yoast. The site surfaces social channels and embeds, while maintaining a clear brand system anchored by the ASSITEJ vertical mark.",
+      tags: ["WordPress", "Multilingual", "SEO", "Resources"],
+      icon: "assets/assitej-logo.png",
+      iconLabel: "ASSITEJ International logo"
     },
     B: {
       label: "B",
@@ -181,7 +183,16 @@
     const project = projectData[key];
     if (!project) return;
     if (workDetailCircle) {
-      workDetailCircle.textContent = project.label;
+      workDetailCircle.textContent = project.icon ? "" : project.label;
+      if (project.icon) {
+        workDetailCircle.classList.add("has-icon");
+        workDetailCircle.style.backgroundImage = `url(${project.icon})`;
+        workDetailCircle.setAttribute("aria-label", project.iconLabel || project.name);
+      } else {
+        workDetailCircle.classList.remove("has-icon");
+        workDetailCircle.style.backgroundImage = "";
+        workDetailCircle.removeAttribute("aria-label");
+      }
     }
     if (workDetailTitle) {
       workDetailTitle.textContent = project.name;

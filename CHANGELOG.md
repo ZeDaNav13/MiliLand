@@ -1,5 +1,8 @@
 # Changelog
 
+## Unreleased
+- Filled Project A with live site details (ASSITEJ International), added logo icon, and tuned project tags.
+
 ## 4.3
 - Added a ninth project and refined the Works detail slide: balanced gutters on mobile, aligned header/body/pills, and prepped for richer project content.
 - Locked Works navigation so users enter details only via project clicks; chevrons now behave consistently and are non-interactive when hidden.
